@@ -30,18 +30,6 @@ Process = None
 
 
 # Classes
-## Background
-class BackGroundLabel:
-    def __init__(self,upwindow,init_path:str):
-        self.windowform = upwindow
-        self.path = os.path.join(os.path.dirname(__file__)+init_path)
-    def place():
-        image = Image.open(self.path).convert('RGBA')
-        alpha=128
-        image.inputalpha(alpha)
-        image_resized =image.resize((self.windowform.winfo_width(),self.windowform.winfo_height()),Image.Resampling.LANCZOS)
-
-
 ## Main_Window
 class WindowForm:
     def __init__(self, title: str):
@@ -49,17 +37,6 @@ class WindowForm:
         self.title = title
         self.root.title(title)
         self.background = None
-
-    def setbackground(self, background: str):
-        dirname = os.path.dirname(__file__)
-        bg_path = os.path.join(dirname, background)
-        image = Image.open(bg_path).convert('RGBA')
-        alpha = 128
-        image.putalpha(alpha)
-        image_resized = image.resize((self.root.winfo_width(), self.root.winfo_height()), Image.Resampling.LANCZOS)
-        bg_object = ImageTk.PhotoImage(image_resized)
-        self.background = tk.Label(self.root, image=bg_object)
-        self.background.place(relx=0, rely=0, relheight=1, relwidth=1)
 
     def setwindow(self, width, height):
         self.root.geometry(f"{width}x{height}")
