@@ -30,6 +30,18 @@ Process = None
 
 
 # Classes
+## Background
+class BackGroundLabel:
+    def __init__(self,upwindow,init_path:str):
+        self.windowform = upwindow
+        self.path = os.path.join(os.path.dirname(__file__)+init_path)
+    def place():
+        image = Image.open(self.path).convert('RGBA')
+        alpha=128
+        image.inputalpha(alpha)
+        image_resized =image.resize((self.windowform.winfo_width(),self.windowform.winfo_height()),Image.Resampling.LANCZOS)
+
+
 ## Main_Window
 class WindowForm:
     def __init__(self, title: str):
