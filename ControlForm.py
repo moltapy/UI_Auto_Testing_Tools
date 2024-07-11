@@ -25,23 +25,29 @@ import ctypes
 Simulation_Mode = {"mode": None, "condition": None}
 Mapping = {"祝者": "chara", "陨星之忆": "weapon"}
 Rarity = {"辰级": "third-rarity", "星级": "forth-rarity", "月级": "fifth-rarity", "日级": "sixth-rarity"}
+Dirname = os.path.dirname(__file__)
 Threads = None
 Process = None
 
 
 # Classes
 ## Main_Window
-class WindowForm:
-    def __init__(self, title: str):
-        self.root = tk.Tk()
-        self.title = title
-        self.root.title(title)
-        self.background = None
+class WindowForm(tk.Frame):
+    def __init__(self, title: str,master=None):
+        super().__init__(master)
+        self.master = master
+        self.settitle(title=title)
+        self.setposition(0,0,1,1)
+        
 
     def setwindow(self, width, height):
-        self.root.geometry(f"{width}x{height}")
-        self.root.mainloop()
+        self.master.geometry(f"{width}x{height}")
 
+    def settitle(self,title):
+        self.master.title(title)
+
+    def setposition(self,x,y,h,w):
+        self.place(relx=x,rely=y,relheight=h,relwidth=w)
 
 ## Sub_Window
 class SubWindowForm(WindowForm):
@@ -60,6 +66,24 @@ class LabelForm:
 
     def place(self, x, y, width, height):
         self.root.place(relx=x, rely=y, relwidth=width, relheight=height)
+
+class BackgroundLabel:
+    def __init__(self,content:str,window_belong):
+        self.content_path = os.path.join(Dirname,content)
+        self.belong_window = window_belong
+        self.bkgd_object = self.process_picture(content)
+        self.root = tk.Label(window_belong,image= self.bkgd_object)
+       
+    def process_picture(self,origin_path,alpha = 128):
+        origin_image = Image.open(origin_path).convert('RGBA')
+        origin_image.putalpha(alpha)
+        resized_image = origin_image.resize((self.belong_window.winfo_screenwidth(),self.belong_window.winfo_screenheight()),Image.Resampling.LANCZOS)
+        processed_image = ImageTk.PhotoImage(resized_image)
+        return processed_image
+    
+    def place(self,x,y,height,width):
+         self.root.place(relx=x, rely=y, relheight=height, relwidth=width)
+
 
 
 ## Entry_InputBox
