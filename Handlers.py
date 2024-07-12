@@ -16,7 +16,18 @@ def open_directory(args):
         else:
             messagebox.showerror("错误","文件夹无效")
 ## open subwindow
-def open_subwindow(basedwindow,width,height,title):
+def open_subwindow(basedwindow,width,height,title,window_varname:str):
+    exec(f"global {window_varname}")
     subwindow = SubWindowForm(title=title,upwindow=basedwindow)
     subwindow.setwindow(width=width,height=height)
-    return subwindow
+    exec(f"{window_varname} = subwindow")
+
+## check directory
+def check_directory(label):
+    if not os.path.isdir(label.string.get()):
+         messagebox.showerror("错误","请先选择资源文件夹")
+    else:
+        os.startfile(label.string.get())
+
+## show search results
+def 
