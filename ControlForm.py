@@ -1,5 +1,5 @@
 # -*- encoding=utf-8 -*-
-__author__ = "Molta"
+__author__ = "Moltapy"
 
 # Modules
 import tkinter as tk
@@ -50,10 +50,22 @@ class WindowForm(tk.Frame):
         self.place(relx=x,rely=y,relheight=h,relwidth=w)
 
 ## Sub_Window
-class SubWindowForm(WindowForm):
-    def __init__(self, title: str, upwindow):
-        self.root = tk.Toplevel(upwindow.root)
-        super().__init__(title)
+class SubWindowForm(tk.Frame):
+    def __init__(self, title: str, upwindow): 
+        self.master = tk.Toplevel(upwindow.master)
+        super().__init__(self.master)
+        self.settitle(title=title)
+        self.setposition(0,0,1,1)
+        
+
+    def setwindow(self, width, height):
+        self.master.geometry(f"{width}x{height}")
+
+    def settitle(self,title):
+        self.master.title(title)
+
+    def setposition(self,x,y,h,w):
+        self.place(relx=x,rely=y,relheight=h,relwidth=w)
 
 
 ## Labels
