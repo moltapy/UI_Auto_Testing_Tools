@@ -30,4 +30,13 @@ def check_directory(label):
         os.startfile(label.string.get())
 
 ## show search results
-def 
+
+def combine_filename(*args):
+    if len(args) == 2:
+        filename = f"{Mapping[args[0].string.get()]}_{args[1].string.get()}"
+    elif len(args) == 3:
+        filename = f"{Mapping[args[0].string.get()]}_{Rarity[args[1].string.get()]}_{}"
+
+
+def search_out():
+    pass
