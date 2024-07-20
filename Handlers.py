@@ -40,4 +40,6 @@ def combine_filename(*args):
 
 
 def search_out(*args):
-    
+    filename = combine_filename(*args)
+    if os.path.isfile(filename):
+        
