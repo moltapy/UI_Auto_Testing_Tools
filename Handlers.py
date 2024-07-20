@@ -34,9 +34,10 @@ def check_directory(label):
 def combine_filename(*args):
     if len(args) == 2:
         filename = f"{Mapping[args[0].string.get()]}_{args[1].string.get()}"
-    elif len(args) == 3:
-        filename = f"{Mapping[args[0].string.get()]}_{Rarity[args[1].string.get()]}_{}"
+    else:
+        filename ="error"
+    return filename
 
 
-def search_out():
-    pass
+def search_out(*args):
+    
