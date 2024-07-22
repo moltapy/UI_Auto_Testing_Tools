@@ -74,7 +74,11 @@ if __name__ == '__main__':
     button_04.place(array_x[1],array_y[3],*formsize)
 
     button_05 = ButtonForm(init_text="查询",window_belong=window_main,
+<<<<<<< Updated upstream
                            func_handle=lambda:search_out(*[]))
+=======
+                           func_handle=lambda:search_out(Mapping[opmenu_01.string],entry_01.string))
+>>>>>>> Stashed changes
 
 
     ## OptionMenu

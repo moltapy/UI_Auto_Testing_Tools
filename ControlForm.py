@@ -129,3 +129,9 @@ class OptionForm:
 
     def place(self, x, y, width, height):
         self.root.place(relx=x, rely=y, relwidth=width, relheight=height)
+    
+## MessageWindows
+
+class MessageWindows:
+    def __init__(self,title,image):
+        self.

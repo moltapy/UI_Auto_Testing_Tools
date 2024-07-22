@@ -32,14 +32,29 @@ def check_directory(label):
 ## show search results
 
 def combine_filename(*args):
-    if len(args) == 2:
-        filename = f"{Mapping[args[0].string.get()]}_{args[1].string.get()}"
+    if len(args) == 3:
+        filename = f"{Mapping[args[1].string.get()]}_{args[2].string.get()}"
+        dirname =args[0]
+        filepath = os.path.join(dirname,filename) 
     else:
-        filename ="error"
-    return filename
+        filepath ="error"
+    return filepath
 
+def show_image(img_path:str):
+    image = Image.open(img_path)
+    imgtk = ImageTk.PhotoImage(image)
+    return imgtk
+
+def results_subwindow(message:str,image):
+    
 
 def search_out(*args):
+<<<<<<< Updated upstream
     filename = combine_filename(*args)
     if os.path.isfile(filename):
+=======
+    filepath = combine_filename(*args)
+    if os.path.isfile(filepath):
+        res_img = show_image(filepath)
+>>>>>>> Stashed changes
         
